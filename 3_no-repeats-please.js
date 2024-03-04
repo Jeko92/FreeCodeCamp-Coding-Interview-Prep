@@ -1,9 +1,25 @@
 const permAlone = (str) => {
-  const strArr = str.split("");
-  const output = getPermutations(strArr)
-    .map((el) => el.join(""))
-    .filter((str) => /^(?!.*(.)(\1)).*$/.test(str)).length;
-  return output;
+  const strArr = [...str];
+  const perms = getPermutations(strArr);
+
+  let count = 0;
+  for (const perm of perms) {
+    if (!/(.)\1+/.test(perm.join(""))) {
+      count++;
+    }
+    //let hasRepeats = false;
+    // for (let i = 0; i < perm.length - 1; i++) {
+    //   if (perm[i] === perm[i + 1]) {
+    //     hasRepeats = true;
+    //     break;
+    //   }
+    // }
+    // if (!hasRepeats) {
+    //   count++;
+    // }
+  }
+
+  return count;
 };
 
 const getPermutations = (arr) => {
